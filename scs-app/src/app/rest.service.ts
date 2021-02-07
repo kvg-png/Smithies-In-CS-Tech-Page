@@ -19,4 +19,7 @@ export class RestApiService {
     }
 
 
+    getdbresults(){
+        return this.httpClient.get('http://localhost:5000/api/dbresults'); //this is the correct format
+    }
 }

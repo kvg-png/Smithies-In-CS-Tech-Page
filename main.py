@@ -1,15 +1,12 @@
 from flask import Flask, jsonify
 from flask import send_from_directory
 from werkzeug.routing import BaseConverter
-from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS
 
-from werkzeug.routing import BaseConverter
+from sqlalchemy import create_engine
+from flask_cors import CORS
 
 app = Flask(__name__, static_url_path="", static_folder="scs-app/dist/scs-app/")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-db = SQLAlchemy(app)
 
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
@@ -32,6 +29,10 @@ def angular_src(path):
 @app.route("/api/hello")
 def hello():
     return jsonify({'myText' : "Hello World!"})
+
+@app.route("/api/dbresults")
+def dbresults():
+    return jsonify({'myText': "Hello World!"})
 
 if __name__ == "__main__":
     app.run()
