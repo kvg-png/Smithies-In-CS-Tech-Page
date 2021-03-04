@@ -7,7 +7,7 @@ import { TechresourcesComponent } from './techresources/techresources.component'
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', component: HomeComponent },
-  { path: 'resources/course-selection', component: FulfillMajorComponent }
+  { path: 'resources/course-selection', component: FulfillMajorComponent },
   { path: 'techresources', component: TechresourcesComponent}
 ];
 
