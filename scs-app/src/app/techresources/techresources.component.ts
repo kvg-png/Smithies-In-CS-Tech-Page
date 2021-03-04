@@ -10,7 +10,7 @@ export class TechresourcesComponent implements OnInit {
 
   constructor(private restApiService: RestApiService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     console.log('we are querying the database!')
     console.log(this.restApiService.getdbresults());
     this.restApiService.getdbresults().subscribe(data => {
@@ -20,5 +20,6 @@ export class TechresourcesComponent implements OnInit {
     }
     )
   }
+
 
 }

@@ -5,6 +5,9 @@ from werkzeug.routing import BaseConverter
 from sqlalchemy import create_engine
 from flask_cors import CORS
 
+import sqlite3
+import setupDB
+
 app = Flask(__name__, static_url_path="", static_folder="scs-app/dist/scs-app/")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 
@@ -32,7 +35,12 @@ def hello():
 
 @app.route("/api/dbresults")
 def dbresults():
-    return jsonify({'myText': "Hello World!"})
+    connec = sqlite3.connect('womenInTechResources')
+    #connec = sqlite3.connect('sqlite:////womenInTechResources.db')
+    cur = connec.cursor()
+    cur.execute('SELECT * FROM womenInTechResources')
+    dbtable = cur.fetchall()
+    return jsonify({'myText' : "Hello World!"})
 
 if __name__ == "__main__":
     app.run()
