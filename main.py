@@ -35,11 +35,11 @@ def hello():
 
 @app.route("/api/dbresults")
 def dbresults():
-    connec = sqlite3.connect('womenInTechResources')
-    #connec = sqlite3.connect('sqlite:////womenInTechResources.db')
-    cur = connec.cursor()
-    cur.execute('SELECT * FROM womenInTechResources')
-    dbtable = cur.fetchall()
+    # connec = sqlite3.connect('womenInTechResources')
+    # #connec = sqlite3.connect('sqlite:////womenInTechResources.db')
+    # cur = connec.cursor()
+    # cur.execute('SELECT * FROM womenInTechResources')
+    # dbtable = cur.fetchall()
     return jsonify({'myText' : "Hello World!"})
 
 if __name__ == "__main__":
