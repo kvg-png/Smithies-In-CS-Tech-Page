@@ -45,16 +45,11 @@ def dbresults():
     df = pd.read_csv(file_name)
     df.to_sql(name = ConferenceDB.__tablename__, con=engine, index_label='id', if_exists='replace')
     techdb = engine.execute("SELECT * FROM womenInTechResources").fetchall()
-
-    d, a = {}, []
-    for rowproxy in techdb:
-        # rowproxy.items() returns an array like [(key0, value0), (key1, value1)]
-        for column, value in rowproxy.items():
-            # build up the dictionary
-            d = {**d, **{column: value}}
-        a.append(d)
+    print((type(techdb)))
+    print(techdb)
+    d = {t[0]:t[1:] for t in techdb}
     return d
-    #return jsonify({'myText' : "Hello World!"})
+
 
 if __name__ == "__main__":
     app.run()
