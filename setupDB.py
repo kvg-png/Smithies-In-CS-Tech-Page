@@ -34,13 +34,6 @@ class ConferenceDB(Base):
     latinX = Column(VARCHAR)
     firstgen = Column(VARCHAR)
 
-    def createDB():
-        engine = create_engine('sqlite:////tmp/test.db')
-        Base.metadata.create_all(engine)
-        file_name = 'womenInTechConferences.csv'
-        df = pd.read_csv(file_name)
-        return df.to_sql(name = ConferenceDB.__tablename__, con=engine, index_label='id', if_exists='replace')
-
     # def __init__(self):
     #     engine = create_engine('sqlite:////tmp/test.db')
     #     Base.metadata.create_all(engine)

@@ -7,11 +7,15 @@ from flask_cors import CORS
 
 import sqlite3
 from setupDB import ConferenceDB
+from sqlalchemy.ext.declarative import declarative_base
+import pandas as pd
 
 app = Flask(__name__, static_url_path="", static_folder="scs-app/dist/scs-app/")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+Base = declarative_base()
 
 class RegexConverter(BaseConverter):
     def __init__(self, url_map, *items):
@@ -35,12 +39,22 @@ def hello():
 
 @app.route("/api/dbresults")
 def dbresults():
-    # connec = sqlite3.connect('womenInTechResources')
-    # #connec = sqlite3.connect('sqlite:////womenInTechResources.db')
-    # cur = connec.cursor()
-    # cur.execute('SELECT * FROM womenInTechResources')
-    # dbtable = cur.fetchall()
-    return jsonify({'myText' : "Hello World!", "dbresults" : ConferenceDB.createDB()})
+    engine = create_engine('sqlite:////tmp/test.db')
+    Base.metadata.create_all(engine)
+    file_name = 'womenInTechConferences.csv'
+    df = pd.read_csv(file_name)
+    df.to_sql(name = ConferenceDB.__tablename__, con=engine, index_label='id', if_exists='replace')
+    techdb = engine.execute("SELECT * FROM womenInTechResources").fetchall()
+
+    d, a = {}, []
+    for rowproxy in techdb:
+        # rowproxy.items() returns an array like [(key0, value0), (key1, value1)]
+        for column, value in rowproxy.items():
+            # build up the dictionary
+            d = {**d, **{column: value}}
+        a.append(d)
+    return d
+    #return jsonify({'myText' : "Hello World!"})
 
 if __name__ == "__main__":
     app.run()
