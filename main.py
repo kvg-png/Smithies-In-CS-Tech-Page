@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 from flask_cors import CORS
 
 import sqlite3
-import setupDB
+from setupDB import ConferenceDB
 
 app = Flask(__name__, static_url_path="", static_folder="scs-app/dist/scs-app/")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
@@ -40,7 +40,7 @@ def dbresults():
     # cur = connec.cursor()
     # cur.execute('SELECT * FROM womenInTechResources')
     # dbtable = cur.fetchall()
-    return jsonify({'myText' : "Hello World!"})
+    return jsonify({'myText' : "Hello World!", "dbresults" : ConferenceDB.createDB()})
 
 if __name__ == "__main__":
     app.run()
