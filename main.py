@@ -49,6 +49,7 @@ def dbresults():
     print(techdb)
     d = {t[0]:t[1:] for t in techdb}
     return d
+    #change
 
 
 if __name__ == "__main__":
