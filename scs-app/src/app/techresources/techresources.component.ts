@@ -8,6 +8,7 @@ import { RestApiService } from '../rest.service';
 })
 export class TechresourcesComponent implements OnInit {
   clickMessage = '';
+  checkMessage = '';
 
   constructor(private restApiService: RestApiService) { }
 
@@ -22,8 +23,12 @@ export class TechresourcesComponent implements OnInit {
     )
   }
 
-  onClick(){
+  onSubmit(){
     this.clickMessage = 'Clicked Button';
+  }
+
+  onCheck(){
+    this.checkMessage = 'Check Box';
   }
 
 
