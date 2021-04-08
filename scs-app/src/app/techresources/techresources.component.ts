@@ -28,7 +28,7 @@ export class TechresourcesComponent implements OnInit {
   }
 
   onCheck(){
-    this.checkMessage = 'Check Box';
+    this.checkMessage = "checkConference";
   }
 
 

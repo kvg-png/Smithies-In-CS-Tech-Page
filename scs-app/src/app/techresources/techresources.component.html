@@ -1,11 +1,12 @@
 <p>techresources works!</p>
 
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="checkConference">
+  <input class="form-check-input" type="checkbox" value="" id="checkConference" (change)="onCheck()">
   <label class="form-check-label" for="checkConference">
     Conference
   </label>
 </div>
+{{checkMessage}}
 
 <div class="form-check">
   <input class="form-check-input" type="checkbox" value="" id="checkMentoring">
