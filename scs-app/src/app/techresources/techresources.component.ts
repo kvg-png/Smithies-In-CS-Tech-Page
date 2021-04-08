@@ -7,6 +7,7 @@ import { RestApiService } from '../rest.service';
   styleUrls: ['./techresources.component.scss']
 })
 export class TechresourcesComponent implements OnInit {
+  clickMessage = '';
 
   constructor(private restApiService: RestApiService) { }
 
@@ -19,6 +20,10 @@ export class TechresourcesComponent implements OnInit {
 
     }
     )
+  }
+
+  onClick(){
+    this.clickMessage = 'Clicked Button';
   }
 
 
