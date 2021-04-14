@@ -27,8 +27,9 @@ export class TechresourcesComponent implements OnInit {
     this.clickMessage = 'Clicked Button';
   }
 
-  onCheck(){
-    this.checkMessage = "checkConference";
+  onCheck(event: any){
+    //this.checkMessage = "checkConference";
+    this.checkMessage = event.target.value;
   }
 
 
