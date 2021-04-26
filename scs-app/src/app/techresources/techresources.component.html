@@ -1,15 +1,15 @@
 <p>techresources works!</p>
 
+<button type="button" class="btn btn-primary btn-sm" (click) = "onClear(true)">Uncheck All</button>
+
+<button type="button" class="btn btn-primary btn-sm" (click) = "onClear(false)">Check All</button>
+
 <div class="form-check" *ngFor = "let category of checkboxList">
   <input class = "form-check-input" name = "{{category.printName}}" type = "checkbox" [(ngModel)] = "category.isChecked" id = "{{category.id}}" (change) = "onChangeBox(category.value, $event)">
   <label class = "form-check-label" for="{{category.printName}}">
     {{category.printName}}
   </label>
 </div>
-
-<button type="button" class="btn btn-primary btn-sm" (click) = "onClear(true)">Uncheck All</button>
-
-<button type="button" class="btn btn-primary btn-sm" (click) = "onClear(false)">Check All</button>
 
 <button type="button" class="btn btn-primary btn-sm" (click) = "onSubmit()">Search</button>
 
