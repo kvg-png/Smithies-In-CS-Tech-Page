@@ -39,6 +39,7 @@ def hello():
 
 @app.route("/api/dbresults")
 def dbresults():
+    //print(categoryList)
     engine = create_engine('sqlite:////tmp/test.db')
     Base.metadata.create_all(engine)
     file_name = 'womenInTechConferences.csv'
